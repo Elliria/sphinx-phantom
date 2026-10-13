@@ -29,10 +29,6 @@ extensions = []
 # directories to ignore when looking for source files.
 exclude_patterns = ['_build']
 
-# -- HTML configuration ------------------------------------------------------
-
-html_show_sourcelink = False
-
 # -- Unconventional document configuration -----------------------------------
 
 # Specify the root document:
