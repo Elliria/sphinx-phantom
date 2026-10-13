@@ -29,6 +29,10 @@ extensions = []
 # directories to ignore when looking for source files.
 exclude_patterns = ['_build']
 
+# -- HTML configuration ------------------------------------------------------
+
+html_copy_source = False
+
 # -- Unconventional document configuration -----------------------------------
 
 # Specify the root document:
