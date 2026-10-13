@@ -28,3 +28,7 @@ exclude_patterns = ['_build']
 
 # Specify the root document:
 root_doc = 'index'
+
+# -- HTML configuration ------------------------------------------------------
+
+html_copy_source = False
