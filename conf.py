@@ -27,15 +27,7 @@ extensions = []
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = [
-    '_build',          # Prevent Sphinx from tracking its own build data
-    '**/.DS_Store',    # Prevent Sphinx from tracking the macOS hidden **Desktop Services Store** file
-    '**/__MACOSX/**',  # Prevent Sphinx from tracking macOS zip metadata directories
-    '**/._*',          # Prevent Sphinx from tracking macOS AppleDouble metadata files
-    '*.md',            # Prevent Sphinx from tracking all Markdown in the root directory
-    '**/Thumbs.db',    # Prevent Sphinx from tracking all nested Windows thumbnail caches
-   '**/.venv/**',      # Prevent Sphinx from tracking all nested virtual environments
-]
+exclude_patterns = ['_build']
 
 # -- HTML configuration ------------------------------------------------------
 
@@ -43,10 +35,12 @@ html_theme = 'alabaster'
 
 # -- Unconventional document configuration -----------------------------------
 
-# The master toctree document:
+# Specify the root document:
 root_doc = 'index'
+# Specify the filename of the synthesized root document:
+index_file = f'{root_doc}.rst'
 
-# Specify the contents of the root document:
+# Specify the contents of the synthesized root document:
 index_content = """
 Sphinx Phantom
 ==============
@@ -63,17 +57,17 @@ How this works:
 - Once ``sphinx-build`` completes the HTML compilation, a cleanup-hook
   instructs **Sphinx** to delete the synthesized file from the GitHub runner.
   Yet, there's an interesting link in the bottom right corner to an
-  automatically-generated source-file in text format that's included as part
-  of the page's structure for use as a hidden reference.
+  automatically-generated text copy of the source document.
 """
 
-# Synthesize the root-document in memory/on disk before parsing:
-with open(root_doc, 'w', encoding='utf-8') as f:
+# Create the root document before Sphinx parses it:
+with open(index_file, 'w', encoding='utf-8') as f:
     f.write(index_content)
 
 # Register a cleanup-hook to erase the root document after compilation:
 def cleanup():
-    if os.path.exists(root_doc):
-        os.remove(root_doc)
+    if os.path.exists(index_file):
+        os.remove(index_file)
 
+# Perform the cleanup:
 atexit.register(cleanup)
