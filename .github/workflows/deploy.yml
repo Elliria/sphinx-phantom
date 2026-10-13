@@ -38,6 +38,34 @@ jobs:
         run: |
           sphinx-build -b html . _build/html
 
+      - name: Inspect Sphinx Build Output
+        run: |
+          echo "=== Root document on runner ==="
+          if [ -f "index.rst" ]; then
+            echo "index.rst EXISTS in source directory"
+          else
+            echo "index.rst DOES NOT EXIST in source directory"
+          fi
+
+          echo ""
+          echo "=== Generated source copy ==="
+          if [ -f "_build/html/_sources/index.rst.txt" ]; then
+            echo "SOURCE COPY EXISTS in HTML output"
+            echo "--- First 20 lines ---"
+            head -n 20 "_build/html/_sources/index.rst.txt"
+          else
+            echo "SOURCE COPY DOES NOT EXIST in HTML output"
+          fi
+
+          echo ""
+          echo "=== Page source link in generated HTML ==="
+          if grep -q 'Page source' "_build/html/index.html"; then
+            echo "PAGE SOURCE LINK EXISTS"
+            grep -n 'Page source' "_build/html/index.html"
+          else
+            echo "PAGE SOURCE LINK DOES NOT EXIST"
+          fi
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
