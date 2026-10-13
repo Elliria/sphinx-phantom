@@ -4,11 +4,6 @@
 # For a full list, see the Sphinx documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-# -- Imports -----------------------------------------------------------------
-
-import os
-import atexit
-
 # -- Path information---------------------------------------------------------
 
 # List of paths, relative to the documentation root directory, that contain
