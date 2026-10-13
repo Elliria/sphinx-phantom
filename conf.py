@@ -31,7 +31,6 @@ exclude_patterns = ['_build']
 
 # -- HTML configuration ------------------------------------------------------
 
-html_theme = 'alabaster'
 html_show_sourcelink = False
 
 # -- Unconventional document configuration -----------------------------------
