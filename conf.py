@@ -31,6 +31,7 @@ exclude_patterns = ['_build']
 
 # -- HTML configuration ------------------------------------------------------
 
+# Disable source copying:
 html_copy_source = False
 
 # -- Unconventional document configuration -----------------------------------
